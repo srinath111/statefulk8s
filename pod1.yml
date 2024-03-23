@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+      name: nginx
+      labels:
+        author: srinath
+spec:
+    containers:
+      - name: mynginx
+        image: nginx
+        ports:
+          - containerPort: 8080
+            hostPort: 8080
+...
