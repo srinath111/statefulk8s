@@ -1,0 +1,15 @@
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sry
+spec:
+  containers:
+    - name: sri
+      image: nginx
+  tolerations:
+    - key: srinath
+      operator: Equal
+      value: sri
+      effect: NoSchedule
+...

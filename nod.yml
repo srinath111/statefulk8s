@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: srinastj
+  labels:
+    name: sri
+    raju: raja
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: srinath
+            operator: In
+            values:
+              - sri
+  containers:
+    - name: sr
+      image: nginx    
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sri
+spec:
+  type: NodePort
+  selector:
+    name: sri
+    raju: raja
+  ports:
+    - targetPort: 80
+      port: 80
+      nodePort: 30001
+...
+

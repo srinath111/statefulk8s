@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srinathk1
+  namespace: srinathkl
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      author: sri
+      type: deploynment
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: sri
+      labels:
+        author: sri
+        type: deploynment
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: srinath
+                  operator: In
+                  values:
+                    - sri
+      containers:
+        - name: sri
+          image: srinathkoraboina/python:4
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sdf
+  namespace: srinathkl
+spec:
+  type: NodePort
+  selector:
+   
+     author: sri
+     type: deploynment
+  ports:
+    - targetPort: 4444
+      port: 4444
+      nodePort: 30001
+...
+

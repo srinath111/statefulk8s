@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: srinath
+  labels:
+    author: sri
+  namespace: srinathkl
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      author: sri
+        #raju: rani
+  template:
+    metadata:
+      name: srinathk1
+      labels:
+        author: sri
+        raju: rani
+    spec:
+      containers:
+        - name: srinathcon
+          image: ashokit/javawebapp 
+

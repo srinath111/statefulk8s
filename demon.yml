@@ -1,0 +1,18 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: sriklm
+spec:
+  selector:
+    matchLabels:
+      nae: sr
+  template:
+    metadata:
+      name: sr
+      labels:
+        nae: sr
+    spec:
+      containers:
+        - name: sro
+          image: nginx
