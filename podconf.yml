@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+   name: javawebapppod
+   labels :
+      app: javawebapp
+spec:
+   containers:
+    - name: javawebappcontainer
+      image: ashokit/javawebapp
+      env:
+        - name:   raju
+          valueFrom:
+            configMapKeyRef :
+                name : srinathconfpod
+                key :  raju
+      ports:
+         - containerPort: 8080
+...
+

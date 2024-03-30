@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+   name: javawebapppod
+   labels :
+      app: javawebapp
+spec:
+   containers:
+    - name: javawebappcontainer
+      image: ashokit/javawebapp
+      volumeMounts:
+        - name: db-connection
+          mountPath: /opt
+   volumes:
+    - name: db-connection
+      configMap:
+        name: srinathconfpod
+...
+

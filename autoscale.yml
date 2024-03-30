@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srinathkp
+  namespace: srinathkl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      author: sri
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      name: sri
+      labels:
+        author: sri
+        raju: raja
+    spec:
+      containers:
+        - name: sri
+          image: nginx
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "128Mi"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: srinath
+                  operator: In
+                  values:
+                    - sri
