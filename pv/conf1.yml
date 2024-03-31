@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: srinathconf
+data:
+  srinath: sri
+  raju: koraboina
+  volumename: srio
+  MYSQL_ROOT_PASSWORD: srinath
+...

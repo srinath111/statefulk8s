@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srinathdb
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+       type: srdb
+  template:
+    metadata:
+      name: srinathdb
+      labels:
+        type: srdb
+    spec:
+      volumes:
+        - name: sri
+          persistentVolumeClaim:
+            claimName: srinathpvc
+      containers:
+        - name: sri
+          image: nginx
+          volumeMounts:
+            - name: sri
+              mountPath: /usr/share/nginx/html
+          env:
+            - name: raju
+              valueFrom:
+                configMapKeyRef:
+                  name: srinathconf
+                  key: raju
+            - name: hu
+              valueFrom:
+                secretKeyRef:
+                  name: srinathsecret
+                  key: password
+...
+
+
