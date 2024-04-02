@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: srinathpvc
+  labels:
+    author: srinath
+    type: pvc
+spec:
+  volumeName: srinathpv
+  resources:
+    requests:
+      storage: 4Gi
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+...

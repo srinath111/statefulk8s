@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: srinathstateful
+  labels:
+    author: srinath
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      author: srinath
+      type: stateful
+        #strategy:
+    # type: RollingUpdate
+  serviceName: srinathservice
+  template:
+    metadata:
+      name: srinathstateful
+      labels:
+        author: srinath
+        type: stateful
+    spec:
+      volumes:
+        - name: srinathpv1
+          persistentVolumeClaim:
+             claimName: srinathpvc
+      containers:
+        - name: srinathcon
+          image: mysql
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: sri_MYSQL_DATABASE
+                  name: srinathconf
+                    #- name: MYSQL_USER
+                    #valueFrom:
+                    #configMapKeyRef:
+                    #key: sri_MYSQL_USER
+                    # name: srinathconf
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: srinathsecret
+          volumeMounts:
+            - name: srinathpv1
+              mountPath: /var/lib/mysql
+...
