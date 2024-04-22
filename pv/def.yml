@@ -17,7 +17,7 @@ spec:
         type: srdb
     spec:
       volumes:
-        - name: sri
+        - name: srinathpv
           persistentVolumeClaim:
             claimName: srinathpvc
       containers:
